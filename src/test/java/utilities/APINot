@@ -38,6 +38,7 @@
 
 
 
+
 1) API testlerinde Web Driver kullanıyor musunuz? Hangi dependencies'leri kullanıyorsunuz?
    API testlerinde, UI testleri için gerekli Web Driver'a ihtiyaç yoktur.
    Başlangıç için Rest-Assured veye JUnit ve TestNG gibi dependencies'ler yeterli olur.
@@ -56,17 +57,43 @@
 5) assertThat() Hard mı yoksa Soft Assert müdür?
    assertThat() Hard assertion'dır.
 
+// hasSize() methodu aradıgımız datadan istediğimiz yerde kaç tane oldugunu bize verir.
+// hasItems() methodu aradıgımız datanın istenen yerde olup olmadıgını verir
+
+
 
 TEST iÇiN KULLANILAN ADRESLER
 
 https://restful-booker.herokuapp.com/booking
-
 https://reqres.in/api/users
-
 http://dummy.restapiexample.com/api/v1/employee
-
 https://jsonplaceholder.typicode.com/
-
 https://www.gmibank.com/api/authenticate
-
 http://www.gmibank.com/api/tp-customers
+
+
+POSTMAN JavaScript Testi
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Name Test", function () {
+    pm.expect(pm.response.text()).to.include("Della");
+});
+pm.test("First Name Test", function () {
+    var response = pm.response.json();
+    pm.expect(response.firstName).to.eql('Della');
+});
+pm.test("Phone Number", function () {
+    var response = pm.response.json();
+    pm.expect(response.phoneNumber).to.eql("213-456-7893");
+});
+pm.test("Credit Card Bakiye Testi", function () {
+    var response = pm.response.json();
+    pm.expect(response.accounts[0].balance).to.eql(69700);
+});
+pm.test("Cheking Bakiye Testi", function () {
+    var response = pm.response.json();
+    pm.expect(response.accounts[1].balance).to.eql(11190);
+});
+Matcher Class Adresi (Matchers (Hamcrest))
+http://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html

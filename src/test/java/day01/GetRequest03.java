@@ -1,3 +1,5 @@
+package day01;
+
 public class GetRequest03 {
 
     /* Matchers ile dataları doğrulayınız
